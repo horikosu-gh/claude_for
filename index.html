@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>エネルギー・地政学ニュース | ホリコシ産業株式会社</title>
+  <meta name="description" content="LPガス・都市ガス・電力料金に影響を与えるエネルギー・地政学ニュースを日本語で日時順にお届けします。">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Heebo:wght@400;500;700;900&family=Sen:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo2white-100.jpg" alt="株式会社ホリコシ産業" class="logo-img">
+      </a>
+      <nav class="header-nav" aria-label="メインナビゲーション">
+        <a href="https://horikoshisangyo.com/">トップ</a>
+        <a href="https://horikoshisangyo.com/#service">事業紹介</a>
+        <a href="https://horikoshisangyo.com/#company">会社概要</a>
+      </nav>
+      <a href="https://horikoshisangyo.com/contact/" class="header-cta">お問い合わせ</a>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-label">ENERGY &amp; GEOPOLITICS NEWS</div>
+      <h1 class="hero-title">エネルギー・地政学<br>ニュース速報</h1>
+      <p class="hero-title-en">Energy &amp; Geopolitics News Brief</p>
+      <p class="hero-subtitle">
+        LPガス料金・都市ガス料金・電力料金に直接または間接的に影響する<br>
+        世界のエネルギー動向と地政学リスクを、日時順にお届けします。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== News Section ===== -->
+  <main class="section" id="news">
+    <div class="container">
+
+      <header class="section-heading center">
+        <h2 class="ja-title">最新ニュース</h2>
+        <div class="heading-line"></div>
+        <p class="en-label">LATEST NEWS</p>
+      </header>
+
+      <!-- カテゴリタブ -->
+      <nav class="category-tabs" id="categoryTabs" aria-label="カテゴリ"></nav>
+
+      <!-- ツールバー -->
+      <div class="news-toolbar">
+        <div class="last-updated" id="lastUpdated">最終更新 <strong>—</strong></div>
+        <button type="button" class="refresh-btn" id="refreshBtn" aria-label="ニュースを再取得">最新情報を取得</button>
+      </div>
+
+      <!-- 状態表示（ローディング/エラー/空） -->
+      <div class="status-msg" id="newsStatus" role="status" aria-live="polite">
+        <div class="spinner"></div>
+        <div>ニュースを取得中...</div>
+      </div>
+
+      <!-- ニュース一覧 -->
+      <ol class="news-list" id="newsList"></ol>
+
+      <p class="source-note">
+        ニュース出典：Google ニュース／RSSフィード経由で取得（rss2json）。<br>
+        英語タイトルは MyMemory 翻訳APIにより自動的に日本語へ翻訳されます。<br>
+        翻訳精度には限界があるため、重要な情報は必ず原文・一次情報をご確認ください。
+      </p>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/images/logo2white-100.jpg" alt="株式会社ホリコシ産業" class="footer-logo-img">
+        <p class="footer-address">
+          〒433-8018 静岡県浜松市根洗町16-3<br>
+          TEL: 053-437-1126
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <a href="https://horikoshisangyo.com/">トップ</a>
+        <a href="https://horikoshisangyo.com/#service">事業紹介</a>
+        <a href="https://horikoshisangyo.com/#company">会社概要</a>
+        <a href="https://horikoshisangyo.com/contact/">お問い合わせ</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Horikoshi Sangyo Co., Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/news.js"></script>
+</body>
+</html>
