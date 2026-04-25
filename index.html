@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>エネルギー・地政学ニュース | ホリコシ産業株式会社</title>
-  <meta name="description" content="LPガス・都市ガス・電力料金に影響を与えるエネルギー・地政学ニュースを日本語で日時順にお届けします。">
+  <title>ホリコシ産業株式会社 | LPガス・エネルギー情報ハブ</title>
+  <meta name="description" content="静岡県浜松市のLPガス販売・工事業 株式会社ホリコシ産業の情報ハブ。エネルギー・地政学ニュース、LPガス料金シミュレーターをご利用いただけます。">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +22,8 @@
         <img src="assets/images/logo2white-100.jpg" alt="株式会社ホリコシ産業" class="logo-img">
       </a>
       <nav class="header-nav" aria-label="メインナビゲーション">
-        <a href="https://horikoshisangyo.com/">トップ</a>
-        <a href="https://horikoshisangyo.com/#service">事業紹介</a>
-        <a href="https://horikoshisangyo.com/#company">会社概要</a>
+        <a href="news/index.html">ニュース</a>
+        <a href="simulator/index.html">料金シミュレーター</a>
       </nav>
       <a href="https://horikoshisangyo.com/contact/" class="header-cta">お問い合わせ</a>
     </div>
@@ -33,51 +32,66 @@
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-label">ENERGY &amp; GEOPOLITICS NEWS</div>
-      <h1 class="hero-title">エネルギー・地政学<br>ニュース速報</h1>
-      <p class="hero-title-en">Energy &amp; Geopolitics News Brief</p>
+      <div class="hero-label">INFORMATION HUB</div>
+      <h1 class="hero-title">エネルギーの「いま」を、<br>暮らしのそばに。</h1>
+      <p class="hero-title-en">Horikoshi Sangyo Information Hub</p>
       <p class="hero-subtitle">
-        LPガス料金・都市ガス料金・電力料金に直接または間接的に影響する<br>
-        世界のエネルギー動向と地政学リスクを、日時順にお届けします。
+        ホリコシ産業の情報ハブへようこそ。<br>
+        最新のエネルギー・地政学ニュースと、ご家庭のLPガス料金シミュレーターを<br>
+        ひとつの場所からご利用いただけます。
       </p>
     </div>
   </section>
 
-  <!-- ===== News Section ===== -->
-  <main class="section" id="news">
+  <!-- ===== Service Cards ===== -->
+  <main class="section" id="services">
     <div class="container">
-
       <header class="section-heading center">
-        <h2 class="ja-title">最新ニュース</h2>
+        <h2 class="ja-title">ご利用いただけるサービス</h2>
         <div class="heading-line"></div>
-        <p class="en-label">LATEST NEWS</p>
+        <p class="en-label">OUR SERVICES</p>
       </header>
 
-      <!-- カテゴリタブ -->
-      <nav class="category-tabs" id="categoryTabs" aria-label="カテゴリ"></nav>
+      <div class="service-cards">
+        <a href="news/index.html" class="service-card">
+          <div class="service-card-tag">NEWS</div>
+          <h3>エネルギー・地政学<br>ニュース速報</h3>
+          <p>
+            LPガス料金・都市ガス料金・電力料金に直接または間接的に影響する、
+            世界のエネルギー動向と地政学リスクのニュースをカテゴリ別に日時順でお届けします。
+            英語ニュースは日本語に自動翻訳して表示します。
+          </p>
+          <span class="service-card-cta">ニュースを見る</span>
+        </a>
 
-      <!-- ツールバー -->
-      <div class="news-toolbar">
-        <div class="last-updated" id="lastUpdated">最終更新 <strong>—</strong></div>
-        <button type="button" class="refresh-btn" id="refreshBtn" aria-label="ニュースを再取得">最新情報を取得</button>
+        <a href="simulator/index.html" class="service-card">
+          <div class="service-card-tag">SIMULATOR</div>
+          <h3>LPガス料金<br>かんたんシミュレーション</h3>
+          <p>
+            毎月のガス使用量、または世帯人数とご使用機器を選ぶだけで、
+            当社にお切り替えいただいた場合の月額ガス料金がその場で分かります。
+            検針票がお手元になくても、おおよその目安をご確認いただけます。
+          </p>
+          <span class="service-card-cta">料金を試算する</span>
+        </a>
       </div>
-
-      <!-- 状態表示（ローディング/エラー/空） -->
-      <div class="status-msg" id="newsStatus" role="status" aria-live="polite">
-        <div class="spinner"></div>
-        <div>ニュースを取得中...</div>
-      </div>
-
-      <!-- ニュース一覧 -->
-      <ol class="news-list" id="newsList"></ol>
-
-      <p class="source-note">
-        ニュース出典：Google ニュース／RSSフィード経由で取得（rss2json）。<br>
-        英語タイトルは MyMemory 翻訳APIにより自動的に日本語へ翻訳されます。<br>
-        翻訳精度には限界があるため、重要な情報は必ず原文・一次情報をご確認ください。
-      </p>
     </div>
   </main>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <h2 class="ja-title">お切り替え・お見積りのご相談</h2>
+      <p class="cta-text">
+        ご質問やご不明点、現在のガス会社からのお切り替えのご相談など、<br>
+        お気軽にお問い合わせください。お見積りは無料です。
+      </p>
+      <div class="cta-buttons">
+        <a href="https://horikoshisangyo.com/contact/" class="btn btn--accent">お問い合わせフォーム</a>
+        <a href="tel:053-437-1126" class="btn btn--outline">お電話でのご相談（053-437-1126）</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== Footer ===== -->
   <footer class="site-footer">
@@ -90,15 +104,15 @@
         </p>
       </div>
       <nav class="footer-nav" aria-label="フッターナビゲーション">
-        <a href="https://horikoshisangyo.com/">トップ</a>
-        <a href="https://horikoshisangyo.com/#service">事業紹介</a>
-        <a href="https://horikoshisangyo.com/#company">会社概要</a>
+        <a href="index.html">トップ</a>
+        <a href="news/index.html">ニュース</a>
+        <a href="simulator/index.html">料金シミュレーター</a>
+        <a href="https://horikoshisangyo.com/">本サイト</a>
         <a href="https://horikoshisangyo.com/contact/">お問い合わせ</a>
       </nav>
       <p class="footer-copy">&copy; 2026 Horikoshi Sangyo Co., Ltd. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="assets/js/news.js"></script>
 </body>
 </html>

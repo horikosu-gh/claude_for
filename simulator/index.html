@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LPガス料金シミュレーション | ホリコシ産業株式会社</title>
+  <meta name="description" content="毎月のガス使用量、または世帯人数とご使用機器を選ぶだけで、当社にお切り替えいただいた場合の月額ガス料金がその場で分かります。">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Heebo:wght@400;500;700;900&family=Sen:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/logo2white-100.jpg" alt="株式会社ホリコシ産業" class="logo-img">
+      </a>
+      <nav class="header-nav" aria-label="メインナビゲーション">
+        <a href="../news/index.html">ニュース</a>
+        <a href="../simulator/index.html" aria-current="page">料金シミュレーター</a>
+      </nav>
+      <a href="https://horikoshisangyo.com/contact/" class="header-cta">お問い合わせ</a>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-label">PRICE SIMULATION</div>
+      <h1 class="hero-title">LPガス料金<br>かんたんシミュレーション</h1>
+      <p class="hero-title-en">LP Gas Price Simulator</p>
+      <p class="hero-subtitle">
+        毎月のガス使用量、または世帯人数とご使用機器を選ぶだけで、<br>
+        当社にお切り替えいただいた場合の月額ガス料金がその場で分かります。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Simulator ===== -->
+  <section class="section section--gray" id="simulator">
+    <div class="container">
+      <header class="section-heading center">
+        <h2 class="ja-title">料金シミュレーター</h2>
+        <div class="heading-line"></div>
+        <p class="en-label">SIMULATOR</p>
+      </header>
+
+      <div class="sim-wrap">
+        <div class="sim-tabs" role="tablist">
+          <button class="sim-tab active" data-tab="direct" type="button" role="tab" aria-selected="true">
+            <span class="sim-tab-num">A</span>使用量から計算
+          </button>
+          <button class="sim-tab" data-tab="estimate" type="button" role="tab" aria-selected="false">
+            <span class="sim-tab-num">B</span>世帯・機器から推定
+          </button>
+        </div>
+
+        <!-- Panel A: 使用量から計算 -->
+        <div class="sim-panel active" id="panel-direct" role="tabpanel">
+          <div class="sim-section">
+            <h3 class="sim-section-title">1か月のご使用量を入力してください</h3>
+            <p class="sim-section-desc">
+              現在お使いのガス会社の検針票（請求書）に書かれている1か月の使用量（立方メートル）をそのまま入力してください。
+            </p>
+            <div class="direct-input-row">
+              <input type="number" id="usage-input" min="0" max="200" step="0.1" value="10" inputmode="decimal" aria-label="ご使用量">
+              <span class="unit">m³ / 月</span>
+            </div>
+            <div class="quick-buttons">
+              <button class="quick-btn" data-usage="5" type="button">単身（5 m³）</button>
+              <button class="quick-btn" data-usage="7" type="button">2人世帯（7 m³）</button>
+              <button class="quick-btn" data-usage="10" type="button">3〜4人世帯（10 m³）</button>
+              <button class="quick-btn" data-usage="15" type="button">5人以上（15 m³）</button>
+            </div>
+          </div>
+
+          <div class="result-box" id="result-direct">
+            <div class="result-label">YOUR ESTIMATED BILL</div>
+            <div class="result-heading">月額ガス料金（税込）の目安</div>
+            <div class="result-main">
+              <span class="result-amount" id="amount-direct">8,250</span>
+              <span class="result-currency">円</span>
+              <span class="result-period">/ 月</span>
+            </div>
+            <p class="result-sub">年額換算：<span id="year-direct">99,000</span> 円</p>
+
+            <div class="result-detail">
+              <div class="result-detail-title">料金の内訳</div>
+              <div class="result-detail-row">
+                <span class="label">基本料金</span>
+                <span class="value"><span id="base-direct">1,750</span> 円</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">従量料金（<span id="usage-disp-direct">10.0</span> m³ 分）</span>
+                <span class="value"><span id="unit-direct">5,750</span> 円</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">小計（税抜）</span>
+                <span class="value"><span id="sub-direct">7,500</span> 円</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">消費税（10%）</span>
+                <span class="value"><span id="tax-direct">750</span> 円</span>
+              </div>
+              <div class="result-detail-row total">
+                <span class="label">合計（税込）</span>
+                <span class="value"><span id="total-direct">8,250</span> 円</span>
+              </div>
+            </div>
+
+            <p class="result-note">
+              ※ 上記は当社の標準料金プランに基づく試算です。実際のご請求額は、検針日・日割り計算・配送形態などにより前後する場合があります。
+            </p>
+          </div>
+        </div>
+
+        <!-- Panel B: 世帯・機器から推定 -->
+        <div class="sim-panel" id="panel-estimate" role="tabpanel">
+          <div class="sim-section">
+            <h3 class="sim-section-title">1. 世帯人数を選んでください</h3>
+            <p class="sim-section-desc">
+              一般財団法人エネルギー経済研究所「石油情報センター」のプロパンガス消費実態調査を参考にした、世帯人数別の通年平均使用量を採用しています。
+            </p>
+            <div class="people-grid" id="people-grid">
+              <button class="people-btn" data-people="1" type="button"><span class="num">1</span><span class="lbl">人</span></button>
+              <button class="people-btn active" data-people="2" type="button"><span class="num">2</span><span class="lbl">人</span></button>
+              <button class="people-btn" data-people="3" type="button"><span class="num">3</span><span class="lbl">人</span></button>
+              <button class="people-btn" data-people="4" type="button"><span class="num">4</span><span class="lbl">人</span></button>
+              <button class="people-btn" data-people="5" type="button"><span class="num">5人以上</span><span class="lbl"></span></button>
+            </div>
+          </div>
+
+          <div class="sim-section">
+            <h3 class="sim-section-title">2. ご使用のガス機器（あてはまるものをチェック）</h3>
+            <p class="sim-section-desc">
+              ガスコンロ・標準的な給湯器（お風呂・台所）は世帯人数の基準値に含まれています。<br>
+              下記は標準以外の機器です。お持ちのものだけお選びください。
+            </p>
+            <div class="eq-grid" id="eq-grid">
+              <label class="eq-item">
+                <input type="checkbox" data-eq="floor" data-add="5">
+                <div>
+                  <div class="eq-item-title">ガス床暖房</div>
+                  <div class="eq-item-note">リビング等に設置（年平均 +5 m³／月）</div>
+                </div>
+              </label>
+              <label class="eq-item">
+                <input type="checkbox" data-eq="bathDryer" data-add="6">
+                <div>
+                  <div class="eq-item-title">ガス浴室暖房乾燥機</div>
+                  <div class="eq-item-note">浴室の暖房・乾燥に使用（+6 m³／月）</div>
+                </div>
+              </label>
+              <label class="eq-item">
+                <input type="checkbox" data-eq="clothesDryer" data-add="6">
+                <div>
+                  <div class="eq-item-title">ガス衣類乾燥機（乾太くん等）</div>
+                  <div class="eq-item-note">毎日1回使用想定（+6 m³／月）</div>
+                </div>
+              </label>
+              <label class="eq-item">
+                <input type="checkbox" data-eq="fanHeater" data-add="3">
+                <div>
+                  <div class="eq-item-title">ガスファンヒーター</div>
+                  <div class="eq-item-note">冬期のみ使用（年平均 +3 m³／月）</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="result-box" id="result-estimate">
+            <div class="result-label">YOUR ESTIMATED BILL</div>
+            <div class="result-heading">月額ガス料金（税込）の目安</div>
+            <div class="result-main">
+              <span class="result-amount" id="amount-est">5,973</span>
+              <span class="result-currency">円</span>
+              <span class="result-period">/ 月</span>
+            </div>
+            <p class="result-sub">
+              推定使用量：<strong id="est-usage">7.0</strong> m³／月　・　年額換算：<span id="year-est">71,676</span> 円
+            </p>
+
+            <div class="result-detail">
+              <div class="result-detail-title">料金の内訳</div>
+              <div class="result-detail-row">
+                <span class="label">基本料金</span>
+                <span class="value"><span id="base-est">1,750</span> 円</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">従量料金（<span id="usage-disp-est">7.0</span> m³ 分）</span>
+                <span class="value"><span id="unit-est">3,680</span> 円</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">小計（税抜）</span>
+                <span class="value"><span id="sub-est">5,430</span> 円</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">消費税（10%）</span>
+                <span class="value"><span id="tax-est">543</span> 円</span>
+              </div>
+              <div class="result-detail-row total">
+                <span class="label">合計（税込）</span>
+                <span class="value"><span id="total-est">5,973</span> 円</span>
+              </div>
+            </div>
+
+            <p class="result-note">
+              ※ 表示金額は通年平均の目安です。冬期はおおむね 1.3 倍、夏期はおおむね 0.8 倍となる傾向があります。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <p>
+          <strong>ご注意：</strong>本シミュレーターは新規お申し込み検討中のお客様向けに、当社の標準料金プランで月額ガス料金の目安をご確認いただくためのものです。実際のご請求額は、検針日や使用環境、お住まいの状況などによって異なる場合があります。正確なお見積りは、画面下部のお問い合わせよりお気軽にご請求ください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 値上げ影響シミュレーター ===== -->
+  <section class="section section--gray" id="price-increase">
+    <div class="container">
+      <header class="section-heading center">
+        <h2 class="ja-title">料金改定によるご負担増シミュレーター</h2>
+        <div class="heading-line"></div>
+        <p class="en-label">PRICE REVISION IMPACT</p>
+      </header>
+
+      <div class="info-banner">
+        <div class="info-banner-tag">IMPORTANT NOTICE</div>
+        <p>
+          <strong>2026年5月検針分より、従量料金を改定させていただきます。</strong><br>
+          ホルムズ海峡情勢を踏まえたガス原料価格の急騰を受け、誠に不本意ではございますが、料金を改定させていただきます。
+          基本料金は据え置きとし、変更は<strong>従量料金（使った量に応じていただく料金）のみ</strong>です。
+          下記のシミュレーターで、ご家庭ごとの月額・年額のご負担増の目安をご確認いただけます。
+        </p>
+      </div>
+
+      <div class="sim-wrap">
+        <div class="sim-panel active">
+          <div class="sim-section">
+            <h3 class="sim-section-title">1. 1か月のご使用量を入力してください</h3>
+            <p class="sim-section-desc">
+              検針票（請求書）に書かれている1か月の使用量（立方メートル）を入力してください。
+            </p>
+            <div class="direct-input-row">
+              <input type="number" id="inc-usage-input" min="0" max="500" step="0.1" value="10" inputmode="decimal" aria-label="ご使用量">
+              <span class="unit">m³ / 月</span>
+            </div>
+            <div class="quick-buttons">
+              <button class="quick-btn" data-inc-usage="2" type="button">〜2m³</button>
+              <button class="quick-btn" data-inc-usage="5" type="button">2〜5m³</button>
+              <button class="quick-btn" data-inc-usage="10" type="button">5〜10m³</button>
+              <button class="quick-btn" data-inc-usage="15" type="button">10〜15m³</button>
+              <button class="quick-btn" data-inc-usage="20" type="button">15〜20m³</button>
+              <button class="quick-btn" data-inc-usage="30" type="button">20〜30m³</button>
+            </div>
+          </div>
+
+          <div class="sim-section">
+            <h3 class="sim-section-title">2. 値上げ幅（税抜・1m³あたり）</h3>
+            <p class="sim-section-desc">
+              今回の値上げ幅は <strong>税抜 55円/m³（税込 60.5円/m³ 相当）</strong> です。値上げ幅は変更してご試算いただけます。
+            </p>
+            <div class="direct-input-row">
+              <input type="number" id="inc-rate-input" min="0" max="500" step="0.5" value="55" inputmode="decimal" aria-label="値上げ幅（税抜 円/m³）">
+              <span class="unit">円 / m³（税抜）</span>
+            </div>
+            <p class="inc-rate-tax-note">
+              税込換算：<strong id="inc-rate-tax">60.5</strong> 円 / m³
+            </p>
+          </div>
+
+          <div class="result-box">
+            <div class="result-label">YOUR ESTIMATED INCREASE</div>
+            <div class="result-heading">月額のご負担増（税込）の目安</div>
+            <div class="result-main">
+              <span class="result-amount" id="inc-monthly">605</span>
+              <span class="result-currency">円</span>
+              <span class="result-period">/ 月</span>
+            </div>
+            <p class="result-sub">
+              年額換算：<span id="inc-yearly">7,260</span> 円
+            </p>
+
+            <div class="result-detail">
+              <div class="result-detail-title">計算の内訳</div>
+              <div class="result-detail-row">
+                <span class="label">ご使用量</span>
+                <span class="value"><span id="inc-usage-disp">10.0</span> m³ / 月</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">値上げ幅（税抜）</span>
+                <span class="value"><span id="inc-rate-disp">55.0</span> 円 / m³</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">月額負担増（税抜）</span>
+                <span class="value"><span id="inc-monthly-excl">550</span> 円</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="label">消費税（10%）</span>
+                <span class="value"><span id="inc-tax">55</span> 円</span>
+              </div>
+              <div class="result-detail-row total">
+                <span class="label">月額負担増（税込）</span>
+                <span class="value"><span id="inc-monthly-incl">605</span> 円</span>
+              </div>
+            </div>
+
+            <p class="result-note">
+              ※ 基本料金（毎月の固定費 1,750円・税抜）は据え置きです。上記は従量料金のみの増額分です。<br>
+              ※ 適用は <strong>2026年5月検針分から</strong> となります。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 参考表 ===== -->
+      <div class="ref-block">
+        <h3 class="ref-title">使用量別のご負担増の目安（税込）</h3>
+        <p class="ref-note">
+          下表は、月の使用量帯ごとの代表的なお客様像と、ご負担増のおおよその金額です。<br>
+          値上げ幅を変更すると、表の金額も連動して更新されます（現在の入力：<strong id="inc-rate-disp2">55</strong> 円/m³ 税抜）。
+        </p>
+        <div class="ref-table-wrap">
+          <table class="plan-table ref-table">
+            <thead>
+              <tr>
+                <th>月の使用量</th>
+                <th>お客様像</th>
+                <th class="num">月のご負担増</th>
+                <th class="num">年間のご負担増</th>
+              </tr>
+            </thead>
+            <tbody id="inc-ref-table-body">
+              <!-- JS で動的生成 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <p>
+          <strong>ご注意：</strong>本シミュレーターは料金改定によるご負担増のおおよその目安を示すものです。実際のご請求額は、検針日・日割り計算・配送形態・季節変動などにより前後する場合があります。詳細は検針票またはお問い合わせよりご確認ください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Plan Detail ===== -->
+  <section class="section" id="plan">
+    <div class="container">
+      <header class="section-heading center">
+        <h2 class="ja-title">当社の標準料金プラン</h2>
+        <div class="heading-line"></div>
+        <p class="en-label">STANDARD PRICE PLAN</p>
+      </header>
+
+      <div class="plan-card">
+        <h3>基本料金</h3>
+        <table class="plan-table">
+          <tbody>
+            <tr>
+              <th style="width: 60%;">毎月の固定費</th>
+              <td class="num">1,750 円 / 月（税抜）</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin-top: 32px;">従量料金（使用量に応じた段階制）</h3>
+        <table class="plan-table">
+          <thead>
+            <tr>
+              <th>ご使用量の範囲</th>
+              <th style="text-align: right;">単価（税抜）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0.1 〜 8.0 m³</td>
+              <td class="num">675 円 / m³</td>
+            </tr>
+            <tr>
+              <td>8.1 〜 15.0 m³</td>
+              <td class="num">590 円 / m³</td>
+            </tr>
+            <tr>
+              <td>15.1 m³ 以上</td>
+              <td class="num">560 円 / m³</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="plan-note">
+          ※ 上記金額に別途消費税（10%）がかかります。<br>
+          ※ 段階制とは、使用量が増えるほど1立方メートルあたりの単価が下がる仕組みです。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Steps ===== -->
+  <section class="section section--gray" id="flow">
+    <div class="container">
+      <header class="section-heading center">
+        <h2 class="ja-title">ご利用までの流れ</h2>
+        <div class="heading-line"></div>
+        <p class="en-label">HOW IT WORKS</p>
+      </header>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">STEP 01</div>
+          <h4>料金シミュレーション</h4>
+          <p>このページで月額の目安をご確認ください。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">STEP 02</div>
+          <h4>お問い合わせ</h4>
+          <p>正式なお見積りをご希望の場合は、お電話またはフォームよりお気軽にご連絡ください。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">STEP 03</div>
+          <h4>現地確認</h4>
+          <p>担当者がご自宅にお伺いし、設備の状態と必要な工事の有無を確認させていただきます。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">STEP 04</div>
+          <h4>ご契約・供給開始</h4>
+          <p>ご契約手続きの後、ボンベ設置・配管接続を行い、ガスのご利用を開始いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <h2 class="ja-title">正式なお見積り・お切り替えのご相談</h2>
+      <p class="cta-text">
+        ご質問やご不明点、現在のガス会社からのお切り替えのご相談など、<br>
+        お気軽にお問い合わせください。お見積りは無料です。
+      </p>
+      <div class="cta-buttons">
+        <a href="https://horikoshisangyo.com/contact/" class="btn btn--accent">お問い合わせフォーム</a>
+        <a href="tel:053-437-1126" class="btn btn--outline">お電話でのご相談（053-437-1126）</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../assets/images/logo2white-100.jpg" alt="株式会社ホリコシ産業" class="footer-logo-img">
+        <p class="footer-address">
+          〒433-8018 静岡県浜松市根洗町16-3<br>
+          TEL: 053-437-1126
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <a href="../index.html">トップ</a>
+        <a href="../news/index.html">ニュース</a>
+        <a href="../simulator/index.html">料金シミュレーター</a>
+        <a href="https://horikoshisangyo.com/">本サイト</a>
+        <a href="https://horikoshisangyo.com/contact/">お問い合わせ</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Horikoshi Sangyo Co., Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/simulator.js"></script>
+</body>
+</html>
