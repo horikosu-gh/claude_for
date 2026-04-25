@@ -36,7 +36,7 @@
       <h1 class="hero-title">LPガス料金<br>かんたんシミュレーション</h1>
       <p class="hero-title-en">LP Gas Price Simulator</p>
       <p class="hero-subtitle">
-        毎月のガス使用量、または世帯人数とご使用機器を選ぶだけで、<br>
+        毎月のガス使用量、または世帯人数とご使用機器を選ぶだけで、<br class="br-pc">
         当社にお切り替えいただいた場合の月額ガス料金がその場で分かります。
       </p>
     </div>
@@ -139,7 +139,7 @@
           <div class="sim-section">
             <h3 class="sim-section-title">2. ご使用のガス機器（あてはまるものをチェック）</h3>
             <p class="sim-section-desc">
-              ガスコンロ・標準的な給湯器（お風呂・台所）は世帯人数の基準値に含まれています。<br>
+              ガスコンロ・標準的な給湯器（お風呂・台所）は世帯人数の基準値に含まれています。<br class="br-pc">
               下記は標準以外の機器です。お持ちのものだけお選びください。
             </p>
             <div class="eq-grid" id="eq-grid">
@@ -229,18 +229,17 @@
   <section class="section section--gray" id="price-increase">
     <div class="container">
       <header class="section-heading center">
-        <h2 class="ja-title">料金改定によるご負担増シミュレーター</h2>
+        <h2 class="ja-title">ガス料金値上げの影響シミュレーター</h2>
         <div class="heading-line"></div>
-        <p class="en-label">PRICE REVISION IMPACT</p>
+        <p class="en-label">PRICE CHANGE IMPACT</p>
       </header>
 
       <div class="info-banner">
-        <div class="info-banner-tag">IMPORTANT NOTICE</div>
+        <div class="info-banner-tag">SIMULATION</div>
         <p>
-          <strong>2026年5月検針分より、従量料金を改定させていただきます。</strong><br>
-          ホルムズ海峡情勢を踏まえたガス原料価格の急騰を受け、誠に不本意ではございますが、料金を改定させていただきます。
-          基本料金は据え置きとし、変更は<strong>従量料金（使った量に応じていただく料金）のみ</strong>です。
-          下記のシミュレーターで、ご家庭ごとの月額・年額のご負担増の目安をご確認いただけます。
+          ガス料金が値上がりした場合、ご家庭の月額・年額のご負担はどれくらい増えるでしょうか。
+          お使いのガスの月の使用量と、想定される値上げ幅（1立方メートルあたりの単価）を入力すると、
+          目安となるご負担増の金額をその場でご確認いただけます。
         </p>
       </div>
 
@@ -268,14 +267,15 @@
           <div class="sim-section">
             <h3 class="sim-section-title">2. 値上げ幅（税抜・1m³あたり）</h3>
             <p class="sim-section-desc">
-              今回の値上げ幅は <strong>税抜 55円/m³（税込 60.5円/m³ 相当）</strong> です。値上げ幅は変更してご試算いただけます。
+              想定される値上げ幅（税抜・1立方メートルあたりの円）を入力してください。
+              数字を変更すると、下の試算結果がリアルタイムで更新されます。
             </p>
             <div class="direct-input-row">
-              <input type="number" id="inc-rate-input" min="0" max="500" step="0.5" value="55" inputmode="decimal" aria-label="値上げ幅（税抜 円/m³）">
+              <input type="number" id="inc-rate-input" min="0" max="500" step="0.5" value="30" inputmode="decimal" aria-label="値上げ幅（税抜 円/m³）">
               <span class="unit">円 / m³（税抜）</span>
             </div>
             <p class="inc-rate-tax-note">
-              税込換算：<strong id="inc-rate-tax">60.5</strong> 円 / m³
+              税込換算：<strong id="inc-rate-tax">33.0</strong> 円 / m³
             </p>
           </div>
 
@@ -283,12 +283,12 @@
             <div class="result-label">YOUR ESTIMATED INCREASE</div>
             <div class="result-heading">月額のご負担増（税込）の目安</div>
             <div class="result-main">
-              <span class="result-amount" id="inc-monthly">605</span>
+              <span class="result-amount" id="inc-monthly">330</span>
               <span class="result-currency">円</span>
               <span class="result-period">/ 月</span>
             </div>
             <p class="result-sub">
-              年額換算：<span id="inc-yearly">7,260</span> 円
+              年額換算：<span id="inc-yearly">3,960</span> 円
             </p>
 
             <div class="result-detail">
@@ -299,109 +299,32 @@
               </div>
               <div class="result-detail-row">
                 <span class="label">値上げ幅（税抜）</span>
-                <span class="value"><span id="inc-rate-disp">55.0</span> 円 / m³</span>
+                <span class="value"><span id="inc-rate-disp">30.0</span> 円 / m³</span>
               </div>
               <div class="result-detail-row">
                 <span class="label">月額負担増（税抜）</span>
-                <span class="value"><span id="inc-monthly-excl">550</span> 円</span>
+                <span class="value"><span id="inc-monthly-excl">300</span> 円</span>
               </div>
               <div class="result-detail-row">
                 <span class="label">消費税（10%）</span>
-                <span class="value"><span id="inc-tax">55</span> 円</span>
+                <span class="value"><span id="inc-tax">30</span> 円</span>
               </div>
               <div class="result-detail-row total">
                 <span class="label">月額負担増（税込）</span>
-                <span class="value"><span id="inc-monthly-incl">605</span> 円</span>
+                <span class="value"><span id="inc-monthly-incl">330</span> 円</span>
               </div>
             </div>
 
             <p class="result-note">
-              ※ 基本料金（毎月の固定費 1,750円・税抜）は据え置きです。上記は従量料金のみの増額分です。<br>
-              ※ 適用は <strong>2026年5月検針分から</strong> となります。
+              ※ 上記は従量料金（使った量に応じていただく料金）の値上げ幅から試算した、月額のご負担増の目安です。
             </p>
           </div>
         </div>
       </div>
 
-      <!-- ===== 参考表 ===== -->
-      <div class="ref-block">
-        <h3 class="ref-title">使用量別のご負担増の目安（税込）</h3>
-        <p class="ref-note">
-          下表は、月の使用量帯ごとの代表的なお客様像と、ご負担増のおおよその金額です。<br>
-          値上げ幅を変更すると、表の金額も連動して更新されます（現在の入力：<strong id="inc-rate-disp2">55</strong> 円/m³ 税抜）。
-        </p>
-        <div class="ref-table-wrap">
-          <table class="plan-table ref-table">
-            <thead>
-              <tr>
-                <th>月の使用量</th>
-                <th>お客様像</th>
-                <th class="num">月のご負担増</th>
-                <th class="num">年間のご負担増</th>
-              </tr>
-            </thead>
-            <tbody id="inc-ref-table-body">
-              <!-- JS で動的生成 -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
       <div class="disclaimer">
         <p>
-          <strong>ご注意：</strong>本シミュレーターは料金改定によるご負担増のおおよその目安を示すものです。実際のご請求額は、検針日・日割り計算・配送形態・季節変動などにより前後する場合があります。詳細は検針票またはお問い合わせよりご確認ください。
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Plan Detail ===== -->
-  <section class="section" id="plan">
-    <div class="container">
-      <header class="section-heading center">
-        <h2 class="ja-title">当社の標準料金プラン</h2>
-        <div class="heading-line"></div>
-        <p class="en-label">STANDARD PRICE PLAN</p>
-      </header>
-
-      <div class="plan-card">
-        <h3>基本料金</h3>
-        <table class="plan-table">
-          <tbody>
-            <tr>
-              <th style="width: 60%;">毎月の固定費</th>
-              <td class="num">1,750 円 / 月（税抜）</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 style="margin-top: 32px;">従量料金（使用量に応じた段階制）</h3>
-        <table class="plan-table">
-          <thead>
-            <tr>
-              <th>ご使用量の範囲</th>
-              <th style="text-align: right;">単価（税抜）</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>0.1 〜 8.0 m³</td>
-              <td class="num">675 円 / m³</td>
-            </tr>
-            <tr>
-              <td>8.1 〜 15.0 m³</td>
-              <td class="num">590 円 / m³</td>
-            </tr>
-            <tr>
-              <td>15.1 m³ 以上</td>
-              <td class="num">560 円 / m³</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p class="plan-note">
-          ※ 上記金額に別途消費税（10%）がかかります。<br>
-          ※ 段階制とは、使用量が増えるほど1立方メートルあたりの単価が下がる仕組みです。
+          <strong>ご注意：</strong>本シミュレーターはガス料金値上げによるご負担増のおおよその目安を示すものです。実際のご請求額は、検針日・日割り計算・配送形態・季節変動などにより前後する場合があります。詳細は検針票またはお問い合わせよりご確認ください。
         </p>
       </div>
     </div>
@@ -446,7 +369,7 @@
     <div class="container">
       <h2 class="ja-title">正式なお見積り・お切り替えのご相談</h2>
       <p class="cta-text">
-        ご質問やご不明点、現在のガス会社からのお切り替えのご相談など、<br>
+        ご質問やご不明点、現在のガス会社からのお切り替えのご相談など、<br class="br-pc">
         お気軽にお問い合わせください。お見積りは無料です。
       </p>
       <div class="cta-buttons">

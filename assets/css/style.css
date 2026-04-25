@@ -27,6 +27,12 @@
 
 html { font-size: 16px; scroll-behavior: smooth; }
 
+/* PC用の改行：スマホでは消す（長文を不自然な位置で折り返さないため） */
+.br-pc { display: inline; }
+@media (max-width: 768px) {
+  .br-pc { display: none; }
+}
+
 body {
   font-family: var(--font-ja);
   color: var(--color-text);
