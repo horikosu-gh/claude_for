@@ -1462,42 +1462,76 @@ a { color: inherit; text-decoration: none; }
 .comp-diff-box--total .comp-diff-label.is-lp { background: var(--color-accent-light); color: var(--color-primary); }
 
 /* ---- バー比較 ---- */
+.comp-bar-chart {
+  margin: 8px 0 16px;
+}
+
 .comp-bar-row {
   display: grid;
-  grid-template-columns: 120px 1fr 130px;
+  grid-template-columns: 120px 1fr;
   align-items: center;
   gap: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .comp-bar-label {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--color-primary);
 }
 
 .comp-bar-track {
   background: var(--color-bg-sub);
-  height: 28px;
+  height: 56px;
   overflow: hidden;
   border: 1px solid var(--color-border);
+  position: relative;
 }
 
 .comp-bar-fill {
   height: 100%;
   width: 0;
-  transition: width 0.4s ease;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 16px;
+  min-width: 0;
 }
 
-.comp-bar-fill--lp { background: var(--color-primary); }
-.comp-bar-fill--ae { background: var(--color-text-sub); }
+/* LP（推し）：濃紺グラデーションで前面に押し出す */
+.comp-bar-fill--lp {
+  background: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary) 70%, var(--color-accent) 100%);
+  box-shadow: 0 2px 12px rgba(29, 32, 137, 0.25);
+}
 
-.comp-bar-amount {
+/* オール電化：抑えた赤系で「重さ」「警告感」を出す */
+.comp-bar-fill--ae {
+  background: linear-gradient(90deg, #8a3a3a 0%, #b8554f 100%);
+  box-shadow: 0 2px 12px rgba(184, 85, 79, 0.20);
+}
+
+.comp-bar-amount-inline {
   font-family: var(--font-en);
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  text-align: right;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--color-white);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+
+.comp-bar-origin-note {
+  font-size: 0.72rem;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+  margin-top: 6px;
+  padding-left: 134px; /* バーの左端と揃える */
+}
+
+.comp-bar-origin-note strong {
+  font-family: var(--font-en);
+  color: var(--color-text);
 }
 
 /* ---- 初期費用テーブル ---- */
@@ -1604,10 +1638,12 @@ a { color: inherit; text-decoration: none; }
   .comp-cards { grid-template-columns: 1fr; }
   .comp-bar-row {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 6px;
     margin-bottom: 18px;
   }
-  .comp-bar-amount { text-align: left; }
+  .comp-bar-track { height: 48px; }
+  .comp-bar-amount-inline { font-size: 0.92rem; }
+  .comp-bar-origin-note { padding-left: 0; }
   .comp-init-table { font-size: 0.82rem; }
 
   /* 設備費ハイライト：縦積み */

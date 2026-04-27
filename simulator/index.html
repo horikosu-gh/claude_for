@@ -414,16 +414,17 @@
             <div class="comp-equip-highlight">
               <div class="comp-equip-side">
                 <div class="comp-equip-tag">LPガス</div>
-                <div class="comp-equip-amount" id="comp-lp-equip">200,000</div>
+                <div class="comp-equip-amount" id="comp-lp-equip">430,000</div>
                 <div class="comp-equip-unit">円</div>
                 <ul class="comp-equip-list">
-                  <li>ガス給湯器（エコジョーズ）</li>
+                  <li>ガス給湯器（エコジョーズ）25万円</li>
+                  <li>ビルトインガスコンロ 18万円</li>
                 </ul>
               </div>
 
               <div class="comp-equip-vs">
                 <div class="comp-equip-vs-label">差額</div>
-                <div class="comp-equip-vs-amount"><span id="comp-equip-diff">570,000</span><span class="comp-equip-vs-yen">円</span></div>
+                <div class="comp-equip-vs-amount"><span id="comp-equip-diff">340,000</span><span class="comp-equip-vs-yen">円</span></div>
                 <div class="comp-equip-vs-note">
                   オール電化は <span id="comp-period-label-3">10年</span>で<br class="br-pc">
                   この差額が重く効きます
@@ -435,8 +436,8 @@
                 <div class="comp-equip-amount" id="comp-ae-equip">770,000</div>
                 <div class="comp-equip-unit">円</div>
                 <ul class="comp-equip-list">
-                  <li>エコキュート（370L）</li>
-                  <li>ビルトインIH</li>
+                  <li>エコキュート（370L）55万円</li>
+                  <li>ビルトインIH 22万円</li>
                 </ul>
               </div>
             </div>
@@ -468,15 +469,23 @@
               <span id="comp-period-label">10年</span>（<span id="comp-months">120</span>カ月）の総コスト
             </div>
 
-            <div class="comp-bar-row">
-              <div class="comp-bar-label">LPガス併用</div>
-              <div class="comp-bar-track"><div class="comp-bar-fill comp-bar-fill--lp" id="comp-bar-lp"></div></div>
-              <div class="comp-bar-amount"><span id="comp-lp-ten">—</span> 円</div>
-            </div>
-            <div class="comp-bar-row">
-              <div class="comp-bar-label">オール電化</div>
-              <div class="comp-bar-track"><div class="comp-bar-fill comp-bar-fill--ae" id="comp-bar-ae"></div></div>
-              <div class="comp-bar-amount"><span id="comp-ae-ten">—</span> 円</div>
+            <div class="comp-bar-chart">
+              <div class="comp-bar-row">
+                <div class="comp-bar-label">LPガス併用</div>
+                <div class="comp-bar-track">
+                  <div class="comp-bar-fill comp-bar-fill--lp" id="comp-bar-lp">
+                    <span class="comp-bar-amount-inline"><span id="comp-lp-ten">—</span> 円</span>
+                  </div>
+                </div>
+              </div>
+              <div class="comp-bar-row">
+                <div class="comp-bar-label">オール電化</div>
+                <div class="comp-bar-track">
+                  <div class="comp-bar-fill comp-bar-fill--ae" id="comp-bar-ae">
+                    <span class="comp-bar-amount-inline"><span id="comp-ae-ten">—</span> 円</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <table class="plan-table comp-init-table">
@@ -490,12 +499,12 @@
               <tbody>
                 <tr>
                   <td>給湯設備（給湯器 / エコキュート）</td>
-                  <td class="num"><span id="comp-lp-initial">200,000</span> 円</td>
+                  <td class="num"><span id="comp-lp-initial">250,000</span> 円</td>
                   <td class="num">550,000 円</td>
                 </tr>
                 <tr>
                   <td>調理設備（ガスコンロ / ビルトインIH）</td>
-                  <td class="num">—</td>
+                  <td class="num">180,000 円</td>
                   <td class="num">220,000 円</td>
                 </tr>
                 <tr id="comp-lp-replace-row" style="display:none">
@@ -505,7 +514,7 @@
                 </tr>
                 <tr>
                   <td><strong>設備費 合計</strong></td>
-                  <td class="num"><strong><span id="comp-lp-equip-2">200,000</span> 円</strong></td>
+                  <td class="num"><strong><span id="comp-lp-equip-2">430,000</span> 円</strong></td>
                   <td class="num"><strong><span id="comp-ae-equip-2">770,000</span> 円</strong></td>
                 </tr>
                 <tr>

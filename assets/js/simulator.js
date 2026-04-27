@@ -247,8 +247,8 @@
 
   // 初期費用（円）
   var INITIAL_COSTS = {
-    lpg: 200000,         // ガス給湯器（エコジョーズ）本体＋設置工事費
-    allElectric: 770000  // エコキュート370L 55万 + ビルトインIH 22万
+    lpg: 430000,         // ガス給湯器（エコジョーズ）25万 ＋ ビルトインコンロ 18万
+    allElectric: 770000  // エコキュート370L 55万 ＋ ビルトインIH 22万
   };
 
   // 買い替えコスト（既設からの交換相場、円）
@@ -376,10 +376,18 @@
     setText('comp-ten-diff', fmt(Math.abs(totalDiff)));
     setDiffLabel('comp-ten-diff-label', totalDiff);
 
-    // バー比率
+    // バー比率：ゼロ起点ではなく「最小値の85%」を起点にして、差額を視覚的に強調
+    var minTotal = Math.min(lpTotal, aeTotal);
     var maxTotal = Math.max(lpTotal, aeTotal);
-    setBar('comp-bar-lp', lpTotal / maxTotal);
-    setBar('comp-bar-ae', aeTotal / maxTotal);
+    var origin = minTotal * 0.85;
+    var range = maxTotal - origin;
+    if (range > 0) {
+      setBar('comp-bar-lp', (lpTotal - origin) / range);
+      setBar('comp-bar-ae', (aeTotal - origin) / range);
+    } else {
+      setBar('comp-bar-lp', 1);
+      setBar('comp-bar-ae', 1);
+    }
 
     // 短期メッセージ：期間が短いほど設備費差の比重が大きくなる
     var equipShareOfDiff = totalDiff > 0 ? Math.round((equipDiff / totalDiff) * 100) : 0;
