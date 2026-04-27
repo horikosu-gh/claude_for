@@ -7,39 +7,35 @@
 (function () {
   'use strict';
 
-  // ---------- カテゴリ定義（日本語＋英語キーワード） ----------
-  // 各カテゴリは複数キーワードを OR 連結（Google News の "OR" 構文）
+  // ---------- カテゴリ定義 ----------
+  // すべてLPガス価格に直結するテーマに絞り込み。
+  // 国内ニュースは「価格・元売・輸入」など価格動向に関わるキーワードに限定し、
+  // 地方販売店のCSRや一般小売記事を拾わないようにしている。
   var CATEGORIES = [
     {
       id: 'all',
       label: 'すべて',
-      // 全カテゴリ表示（個別取得結果を統合）
       keywords: null
     },
     {
-      id: 'lpgas',
-      label: 'LPガス・都市ガス',
-      keywords: '"LPガス" OR "プロパンガス" OR "都市ガス" OR "LP gas" OR "propane price" OR "city gas"'
+      id: 'saudi_cp',
+      label: 'サウジCP・元売',
+      keywords: '"Saudi CP" OR "Aramco propane" OR "Aramco butane" OR "LPG contract price" OR "サウジ CP" OR "アラムコ LPG" OR "アラムコ プロパン"'
     },
     {
-      id: 'electricity',
-      label: '電力料金',
-      keywords: '"電気料金" OR "電力料金" OR "電気代" OR "electricity price" OR "power rate" OR "power tariff"'
+      id: 'mont_belvieu',
+      label: 'Mont Belvieu（米国LPG）',
+      keywords: '"Mont Belvieu" OR "Mt Belvieu" OR "US propane price" OR "Texas propane" OR "EIA propane stocks" OR "米国 プロパン 価格"'
     },
     {
-      id: 'oil_lng',
-      label: '原油・LNG',
-      keywords: '"原油価格" OR "WTI" OR "ブレント" OR "LNG" OR "天然ガス" OR "crude oil price" OR "natural gas price"'
+      id: 'middle_east_oil',
+      label: '中東地政学・原油',
+      keywords: '"ホルムズ海峡" OR "Strait of Hormuz" OR "Middle East oil" OR "Saudi Arabia oil" OR "Iran oil" OR "OPEC oil" OR "Houthi Red Sea" OR "イラン 原油" OR "サウジアラビア 原油" OR "OPEC 原油"'
     },
     {
-      id: 'geopolitics',
-      label: '地政学リスク',
-      keywords: '"中東情勢" OR "ホルムズ海峡" OR "ウクライナ" OR "OPEC" OR "Middle East" OR "Strait of Hormuz" OR "geopolitical risk"'
-    },
-    {
-      id: 'fx',
-      label: '為替・経済',
-      keywords: '"円安 エネルギー" OR "資源価格" OR "energy inflation" OR "yen energy" OR "commodity price"'
+      id: 'lpgas_domestic',
+      label: 'LPガス国内（価格動向）',
+      keywords: '"LPガス" "価格" OR "LPガス" "値上げ" OR "LPガス" "値下げ" OR "プロパンガス" "値上げ" OR "プロパンガス" "値下げ" OR "LPガス" "元売" OR "LPガス" "輸入" OR "LPG" "改定"'
     }
   ];
 
@@ -47,13 +43,47 @@
   var RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
   // Google ニュース日本版（hl=ja, gl=JP, ceid=JP:ja）→ 日本語ソースが優先される
   var GNEWS_BASE = 'https://news.google.com/rss/search?hl=ja&gl=JP&ceid=JP:ja&q=';
-  var ITEMS_PER_CATEGORY = 15;
+  var ITEMS_PER_CATEGORY = 30; // フィルタ後にこの件数を残す目安として多めに取得
+  var DISPLAY_LIMIT_PER_CATEGORY = 15; // フィルタ通過後の表示上限
   var TRANSLATE_API = 'https://api.mymemory.translated.net/get';
   // ローカルストレージのキー（翻訳結果キャッシュ）
   var TRANSLATION_CACHE_KEY = 'horikoshi_news_translation_cache_v1';
   // セッションストレージで取得済み記事をキャッシュ（リロード時の重複APIコール削減）
   var FEED_CACHE_KEY_PREFIX = 'horikoshi_news_feed_';
   var FEED_CACHE_TTL_MS = 10 * 60 * 1000; // 10分
+
+  // ---------- 表示しないソースのリスト ----------
+  // ソース名（タイトル末尾の媒体名）または記事URLに含まれる文字列で部分一致判定
+  // ・記事転載に厳しいメディア（Bloomberg / Reuters 等）
+  // ・テレビ局（地上波キー局／系列局／ラジオ系含む）
+  // ・日本で一般的に閲覧されない海外メディア
+  // ・メディアではない一般サイト（個人店ECなど）
+  var BLOCKED_SOURCES = [
+    // 転載に厳しいメディア
+    'Bloomberg', 'ブルームバーグ',
+    'Reuters', 'ロイター',
+    'Wall Street Journal', 'WSJ',
+    'Financial Times', 'FT',
+    'The Economist',
+    // テレビ局・系列ニュース
+    'NHK', 'TBS', 'TBS NEWS', 'TBS News', 'tbsradio',
+    '日テレ', '日本テレビ', 'NTV',
+    'テレビ朝日', 'テレ朝', 'ANN',
+    'フジテレビ', 'FNN', 'FNNプライムオンライン',
+    'テレビ東京', 'テレ東', 'TXN',
+    'CBC', 'MBS', 'KBS', 'YTV', 'ABCテレビ', 'ABC News',
+    // 海外メディア（日本で一般的に見られていないもの）
+    'VnExpress', 'Vietnam', 'VietnamPlus', 'VietnamNews', 'Vietnam News', 'VOV',
+    'Korea Herald', 'Korea Times', 'Yonhap', 'KBS World',
+    'Xinhua', '新華社', 'Global Times', 'CGTN', 'People\'s Daily',
+    'Al Jazeera', 'TRT', 'Anadolu',
+    'Sputnik', 'TASS', 'RT.com',
+    'France 24', 'DW', 'Deutsche Welle',
+    'Times of India', 'NDTV', 'Hindustan Times', 'The Hindu',
+    'CNA', 'Channel News Asia', 'Straits Times', 'Bangkok Post',
+    // メディアではないサイト（個別ショップ等）
+    '日本橋夢屋'
+  ];
 
   // ---------- DOM 要素 ----------
   var $tabs, $list, $status, $lastUpdated, $refreshBtn;
@@ -194,7 +224,9 @@
             category: cat.id,
             categoryLabel: cat.label
           };
-        });
+        }).filter(function (it) {
+          return !isBlockedItem(it) && !isOldItem(it);
+        }).slice(0, DISPLAY_LIMIT_PER_CATEGORY);
         setFeedCache(cacheKey, items);
         return items;
       });
@@ -207,6 +239,24 @@
     var m = t.match(/\s-\s([^-]+)$/);
     if (m) return m[1].trim();
     return '';
+  }
+
+  // ブロックリストのいずれかが、ソース名または記事タイトル・URLに含まれていれば除外
+  function isBlockedItem(item) {
+    var haystack = ((item.source || '') + ' ' + (item.title || '') + ' ' + (item.link || '')).toLowerCase();
+    for (var i = 0; i < BLOCKED_SOURCES.length; i++) {
+      var needle = BLOCKED_SOURCES[i].toLowerCase();
+      if (haystack.indexOf(needle) !== -1) return true;
+    }
+    return false;
+  }
+
+  // 2025年以前（=2025年12月以前）の記事は除外。日付不明も除外。
+  function isOldItem(item) {
+    if (!item.pubDate) return true;
+    var d = new Date(item.pubDate);
+    if (isNaN(d.getTime())) return true;
+    return d.getFullYear() < 2026;
   }
 
   // ---------- 取得＆翻訳パイプライン ----------

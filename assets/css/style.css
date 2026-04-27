@@ -536,6 +536,12 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
 }
 
+/* 縦積み（上下並び）レイアウト：横画面でも1カラムで上下に並べる */
+.service-cards--stacked {
+  grid-template-columns: 1fr;
+  max-width: 820px;
+}
+
 .service-card {
   background: var(--color-white);
   border: 1px solid var(--color-border);
@@ -1120,6 +1126,505 @@ a { color: inherit; text-decoration: none; }
 .ref-table td.persona {
   font-size: 0.82rem;
   color: var(--color-text-sub);
+}
+
+/* ===========================================================
+   LPガス vs オール電化 比較シミュレーター
+   =========================================================== */
+.comp-kwh-note {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: var(--color-text-sub);
+  background: var(--color-bg-sub);
+  padding: 12px 16px;
+  border-left: 3px solid var(--color-accent);
+}
+
+.comp-kwh-note strong {
+  color: var(--color-primary);
+  font-family: var(--font-en);
+}
+
+.comp-result {
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px dashed var(--color-border);
+}
+
+.comp-result-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.comp-result-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  line-height: 1.95;
+  margin-bottom: 20px;
+}
+
+.comp-result-desc strong { color: var(--color-primary); }
+
+/* ---- 設備費ハイライトボックス ---- */
+.comp-equip-highlight {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: stretch;
+  background: var(--color-white);
+  border: 2px solid var(--color-primary);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.comp-equip-side {
+  padding: 28px 24px 24px;
+  text-align: center;
+}
+
+.comp-equip-side--all {
+  background: var(--color-bg-sub);
+}
+
+.comp-equip-tag {
+  font-family: var(--font-en);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.comp-equip-side--all .comp-equip-tag { color: var(--color-text-sub); }
+
+.comp-equip-amount {
+  font-family: var(--font-en);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-primary);
+  line-height: 1;
+  display: inline-block;
+}
+
+.comp-equip-side--all .comp-equip-amount { color: var(--color-text); }
+
+.comp-equip-unit {
+  font-family: var(--font-ja);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-left: 4px;
+}
+
+.comp-equip-side--all .comp-equip-unit { color: var(--color-text); }
+
+.comp-equip-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  font-size: 0.78rem;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+}
+
+.comp-equip-vs {
+  background: linear-gradient(160deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  color: var(--color-white);
+  padding: 24px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+}
+
+.comp-equip-vs-label {
+  font-family: var(--font-en);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-light);
+  margin-bottom: 6px;
+}
+
+.comp-equip-vs-amount {
+  font-family: var(--font-en);
+  font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.comp-equip-vs-yen {
+  font-family: var(--font-ja);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.comp-equip-vs-note {
+  font-size: 0.72rem;
+  margin-top: 12px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* 短期所有時の警告ボックス */
+.comp-short-term-warning {
+  background: #fff8e6;
+  border-left: 4px solid #e8a917;
+  padding: 18px 22px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  line-height: 1.95;
+  margin-top: 16px;
+}
+
+.comp-short-term-warning strong {
+  color: #b8770b;
+}
+
+/* ---- 期間タブ ---- */
+.period-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.period-tab {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 14px 8px;
+  font-family: var(--font-ja);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.period-tab:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.period-tab.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.comp-period-summary {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+  padding: 8px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comp-period-summary span {
+  font-family: var(--font-en);
+  font-size: 1.1rem;
+}
+
+/* ---- 月額比較カード ---- */
+.comp-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.comp-card {
+  background: var(--color-white);
+  border: 2px solid var(--color-primary);
+  padding: 22px 22px 18px;
+}
+
+.comp-card--all {
+  border-color: var(--color-border);
+  border-style: dashed;
+}
+
+.comp-card-tag {
+  font-family: var(--font-en);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.comp-card--all .comp-card-tag { color: var(--color-text-sub); }
+
+.comp-card-amount {
+  font-family: var(--font-en);
+  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+  font-weight: 900;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.comp-card--all .comp-card-amount { color: var(--color-text); }
+
+.comp-card-unit {
+  font-family: var(--font-ja);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.comp-card-detail {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+}
+
+.comp-card-detail li {
+  font-size: 0.78rem;
+  color: var(--color-text-sub);
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+}
+
+.comp-card-detail li span {
+  font-family: var(--font-en);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ---- 差額ボックス ---- */
+.comp-diff-box {
+  background: var(--color-bg-sub);
+  padding: 18px 22px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.comp-diff-box strong {
+  font-family: var(--font-en);
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin: 0 4px;
+}
+
+.comp-diff-box--total {
+  background: linear-gradient(160deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  color: var(--color-white);
+  margin-top: 16px;
+  padding: 22px 24px;
+  font-size: 1rem;
+}
+
+.comp-diff-box--total strong {
+  color: var(--color-white);
+  font-size: 1.55rem;
+}
+
+.comp-diff-label {
+  display: inline-block;
+  font-family: var(--font-ja);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  margin-right: 10px;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+.comp-diff-label.is-lp {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.comp-diff-label.is-all {
+  background: #c0392b;
+  color: var(--color-white);
+}
+
+.comp-diff-label.is-even {
+  background: var(--color-text-sub);
+  color: var(--color-white);
+}
+
+.comp-diff-box--total .comp-diff-label.is-lp { background: var(--color-accent-light); color: var(--color-primary); }
+
+/* ---- バー比較 ---- */
+.comp-bar-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 130px;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.comp-bar-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.comp-bar-track {
+  background: var(--color-bg-sub);
+  height: 28px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.comp-bar-fill {
+  height: 100%;
+  width: 0;
+  transition: width 0.4s ease;
+}
+
+.comp-bar-fill--lp { background: var(--color-primary); }
+.comp-bar-fill--ae { background: var(--color-text-sub); }
+
+.comp-bar-amount {
+  font-family: var(--font-en);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: right;
+}
+
+/* ---- 初期費用テーブル ---- */
+.comp-init-table {
+  margin-top: 24px;
+}
+
+/* ---- 災害時優位性ボックス ---- */
+.comp-feature-box {
+  margin-top: 36px;
+  background: var(--color-bg-sub);
+  border-left: 4px solid var(--color-accent);
+  padding: 24px 28px;
+}
+
+.comp-feature-tag {
+  font-family: var(--font-en);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.comp-feature-box h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.comp-feature-box p {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  line-height: 1.95;
+}
+
+.comp-feature-box strong {
+  color: var(--color-primary);
+}
+
+/* ---- 市場動向ボックス（夜間電力環境の変化） ---- */
+.comp-feature-box--trend {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+}
+
+.comp-feature-box--trend .comp-feature-tag { color: var(--color-primary); }
+
+.trend-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.trend-list > li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  background: var(--color-bg-sub);
+  padding: 16px 18px;
+  align-items: start;
+}
+
+.trend-no {
+  font-family: var(--font-en);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 1;
+  text-align: center;
+}
+
+.trend-list > li > div {
+  font-size: 0.85rem;
+  line-height: 1.95;
+  color: var(--color-text);
+}
+
+.trend-list > li strong {
+  color: var(--color-primary);
+  font-size: 0.92rem;
+}
+
+/* p.trend-conclusion で詳細度を上げて .comp-feature-box p に勝たせる */
+.comp-feature-box p.trend-conclusion {
+  background: linear-gradient(160deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  color: var(--color-white);
+  padding: 18px 22px;
+  font-size: 0.9rem;
+  line-height: 1.95;
+  margin-top: 8px;
+}
+
+.comp-feature-box p.trend-conclusion strong {
+  color: var(--color-accent-light);
+}
+
+/* ---- レスポンシブ（比較セクション） ---- */
+@media (max-width: 768px) {
+  .comp-cards { grid-template-columns: 1fr; }
+  .comp-bar-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    margin-bottom: 18px;
+  }
+  .comp-bar-amount { text-align: left; }
+  .comp-init-table { font-size: 0.82rem; }
+
+  /* 設備費ハイライト：縦積み */
+  .comp-equip-highlight {
+    grid-template-columns: 1fr;
+  }
+  .comp-equip-vs {
+    padding: 18px 20px;
+    min-width: auto;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* 期間タブ：2x2 */
+  .period-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ===== Responsive ===== */

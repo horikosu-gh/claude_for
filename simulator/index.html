@@ -330,6 +330,264 @@
     </div>
   </section>
 
+  <!-- ===== LPガス vs オール電化 比較 ===== -->
+  <section class="section" id="compare">
+    <div class="container">
+      <header class="section-heading center">
+        <h2 class="ja-title">LPガスとオール電化、10年でどっちがお得？</h2>
+        <div class="heading-line"></div>
+        <p class="en-label">LP GAS vs ALL-ELECTRIC: 10-YEAR COMPARISON</p>
+      </header>
+
+      <div class="info-banner">
+        <div class="info-banner-tag">COMPARISON</div>
+        <p>
+          オール電化は月々の電気代だけで判断されがちですが、<strong>エコキュート（給湯設備）の買い替えコスト</strong>や、<strong>初期費用の差</strong>を含めた10年単位で見るとどちらが本当にお得か変わってきます。<br class="br-pc">
+          世帯人数とご家庭のガス使用量を入力するだけで、月額光熱費と10年トータルコストを公平に比較できます。
+        </p>
+      </div>
+
+      <div class="sim-wrap">
+        <div class="sim-panel active">
+          <div class="sim-section">
+            <h3 class="sim-section-title">1. 世帯人数を選んでください</h3>
+            <p class="sim-section-desc">
+              世帯人数別の標準的な電気使用量を採用しています（LPガス併用世帯／オール電化世帯ともに各種調査の中央値）。
+            </p>
+            <div class="people-grid" id="comp-people-grid">
+              <button class="people-btn" data-people="1" type="button"><span class="num">1</span><span class="lbl">人</span></button>
+              <button class="people-btn" data-people="2" type="button"><span class="num">2</span><span class="lbl">人</span></button>
+              <button class="people-btn" data-people="3" type="button"><span class="num">3</span><span class="lbl">人</span></button>
+              <button class="people-btn active" data-people="4" type="button"><span class="num">4</span><span class="lbl">人</span></button>
+              <button class="people-btn" data-people="5" type="button"><span class="num">5人以上</span><span class="lbl"></span></button>
+            </div>
+            <p class="comp-kwh-note">
+              採用する月の電気使用量：<strong>LPガス併用 <span id="comp-kwh-lpg">430</span> kWh</strong> ／ <strong>オール電化 <span id="comp-kwh-all">670</span> kWh</strong>
+            </p>
+          </div>
+
+          <div class="sim-section">
+            <h3 class="sim-section-title">2. 1か月のガス使用量（LPガス併用世帯のみ）</h3>
+            <p class="sim-section-desc">
+              現在お使いのガス使用量（立方メートル）を入力してください。オール電化と比較するため、当社標準料金プランで月額ガス代を算出します。
+            </p>
+            <div class="direct-input-row">
+              <input type="number" id="comp-gas-usage" min="0" max="200" step="0.1" value="10" inputmode="decimal" aria-label="ガス使用量">
+              <span class="unit">m³ / 月</span>
+            </div>
+          </div>
+
+          <!-- 月額光熱費の比較 -->
+          <div class="comp-result">
+            <div class="comp-result-title">月額光熱費の比較</div>
+            <div class="comp-cards">
+              <div class="comp-card">
+                <div class="comp-card-tag">LPガス併用</div>
+                <div class="comp-card-amount"><span id="comp-lp-monthly">—</span><span class="comp-card-unit">円/月</span></div>
+                <ul class="comp-card-detail">
+                  <li>LPガス代　<span id="comp-lp-gas">—</span> 円</li>
+                  <li>電気代（ポイントプラン）　<span id="comp-lp-elec">—</span> 円</li>
+                </ul>
+              </div>
+              <div class="comp-card comp-card--all">
+                <div class="comp-card-tag">オール電化</div>
+                <div class="comp-card-amount"><span id="comp-ae-monthly">—</span><span class="comp-card-unit">円/月</span></div>
+                <ul class="comp-card-detail">
+                  <li>電気代（スマートライフプラン）</li>
+                </ul>
+              </div>
+            </div>
+            <div class="comp-diff-box">
+              <span class="comp-diff-label" id="comp-monthly-diff-label">—</span>
+              月あたり <strong id="comp-monthly-diff">—</strong> 円
+            </div>
+          </div>
+
+          <!-- 設備費の差（最大のハンディキャップ） -->
+          <div class="comp-result">
+            <div class="comp-result-title">設備費の差 ─ オール電化の最大のハンディキャップ</div>
+            <p class="comp-result-desc">
+              オール電化を選ぶには、まず<strong>給湯と調理の設備をすべて買い替える</strong>必要があります。
+              LPガスのご家庭が初期に必要な給湯器と比べて、設備投資の差は大きく開きます。
+            </p>
+
+            <div class="comp-equip-highlight">
+              <div class="comp-equip-side">
+                <div class="comp-equip-tag">LPガス</div>
+                <div class="comp-equip-amount" id="comp-lp-equip">200,000</div>
+                <div class="comp-equip-unit">円</div>
+                <ul class="comp-equip-list">
+                  <li>ガス給湯器（エコジョーズ）</li>
+                </ul>
+              </div>
+
+              <div class="comp-equip-vs">
+                <div class="comp-equip-vs-label">差額</div>
+                <div class="comp-equip-vs-amount"><span id="comp-equip-diff">570,000</span><span class="comp-equip-vs-yen">円</span></div>
+                <div class="comp-equip-vs-note">
+                  オール電化は <span id="comp-period-label-3">10年</span>で<br class="br-pc">
+                  この差額が重く効きます
+                </div>
+              </div>
+
+              <div class="comp-equip-side comp-equip-side--all">
+                <div class="comp-equip-tag">オール電化</div>
+                <div class="comp-equip-amount" id="comp-ae-equip">770,000</div>
+                <div class="comp-equip-unit">円</div>
+                <ul class="comp-equip-list">
+                  <li>エコキュート（370L）</li>
+                  <li>ビルトインIH</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="comp-short-term-warning">
+              <strong>⚠ お引っ越しの予定がある方は特にご注意</strong><br>
+              オール電化の設備は<strong>持ち出して別宅で再利用することができません</strong>。
+              中古住宅として売却しても設備費がそのまま査定額に乗るとは限らず、
+              <strong>短期間でお住み替えされる場合ほど、設備費の差がそのまま負担増になります</strong>。
+            </div>
+          </div>
+
+          <!-- 期間別 トータルコスト -->
+          <div class="comp-result">
+            <div class="comp-result-title">期間別の総コスト比較</div>
+            <p class="comp-result-desc">
+              比較期間を切り替えると、設備費＋光熱費の総コストがどう変わるかご確認いただけます。<br class="br-pc">
+              <strong>15年・20年</strong>では給湯設備の買い替えコスト（ガス給湯器の交換／エコキュートの交換）も含めて試算します。
+            </p>
+
+            <div class="period-tabs" id="comp-period-tabs" role="tablist">
+              <button class="period-tab" data-period="5"  type="button">5年で見る</button>
+              <button class="period-tab active" data-period="10" type="button">10年</button>
+              <button class="period-tab" data-period="15" type="button">15年</button>
+              <button class="period-tab" data-period="20" type="button">20年</button>
+            </div>
+
+            <div class="comp-period-summary">
+              <span id="comp-period-label">10年</span>（<span id="comp-months">120</span>カ月）の総コスト
+            </div>
+
+            <div class="comp-bar-row">
+              <div class="comp-bar-label">LPガス併用</div>
+              <div class="comp-bar-track"><div class="comp-bar-fill comp-bar-fill--lp" id="comp-bar-lp"></div></div>
+              <div class="comp-bar-amount"><span id="comp-lp-ten">—</span> 円</div>
+            </div>
+            <div class="comp-bar-row">
+              <div class="comp-bar-label">オール電化</div>
+              <div class="comp-bar-track"><div class="comp-bar-fill comp-bar-fill--ae" id="comp-bar-ae"></div></div>
+              <div class="comp-bar-amount"><span id="comp-ae-ten">—</span> 円</div>
+            </div>
+
+            <table class="plan-table comp-init-table">
+              <thead>
+                <tr>
+                  <th>内訳</th>
+                  <th class="num">LPガス</th>
+                  <th class="num">オール電化</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>給湯設備（給湯器 / エコキュート）</td>
+                  <td class="num"><span id="comp-lp-initial">200,000</span> 円</td>
+                  <td class="num">550,000 円</td>
+                </tr>
+                <tr>
+                  <td>調理設備（ガスコンロ / ビルトインIH）</td>
+                  <td class="num">—</td>
+                  <td class="num">220,000 円</td>
+                </tr>
+                <tr id="comp-lp-replace-row" style="display:none">
+                  <td>給湯設備の買い替え（期間中）</td>
+                  <td class="num"><span id="comp-lp-replace">0</span> 円</td>
+                  <td class="num"><span id="comp-ae-replace">0</span> 円</td>
+                </tr>
+                <tr>
+                  <td><strong>設備費 合計</strong></td>
+                  <td class="num"><strong><span id="comp-lp-equip-2">200,000</span> 円</strong></td>
+                  <td class="num"><strong><span id="comp-ae-equip-2">770,000</span> 円</strong></td>
+                </tr>
+                <tr>
+                  <td>光熱費（月額×期間）</td>
+                  <td class="num">月額 × <span id="comp-period-label-2">10年</span></td>
+                  <td class="num">月額 × 同期間</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="comp-diff-box comp-diff-box--total">
+              <span class="comp-diff-label" id="comp-ten-diff-label">—</span>
+              総コストで <strong id="comp-ten-diff">—</strong> 円の差
+            </div>
+          </div>
+
+          <!-- 電気代環境の変化（重要トレンド） -->
+          <div class="comp-feature-box comp-feature-box--trend">
+            <div class="comp-feature-tag">MARKET TREND</div>
+            <h4>「夜間電力が安い」は、もう当たり前ではなくなっています</h4>
+            <p>
+              オール電化最大の強みは <strong>「深夜の安い電気でお湯を沸かす」</strong> ことでした。
+              しかし2025年〜2026年にかけて、その前提は急速に崩れてきています。
+              <strong>シミュレーターの結果には反映していない3つの逆風</strong>が、これからオール電化のお客様にのしかかります。
+            </p>
+
+            <ol class="trend-list">
+              <li>
+                <span class="trend-no">①</span>
+                <div>
+                  <strong>夜間電力の優遇縮小</strong><br>
+                  太陽光発電の普及で日中の電力余剰が拡大し、「夜間に余剰電力を流す」前提が崩れました。
+                  東京電力では <strong>「全電化住宅割引」が2025年3月末で終了</strong>、関東では深夜電力が約2倍に値上げされた事例もあります。
+                  各社のスマートライフ系プランも、ナイトタイムの値上げ幅が他時間帯より大きい改定が続いています。
+                </div>
+              </li>
+              <li>
+                <span class="trend-no">②</span>
+                <div>
+                  <strong>政府の電気代補助、2026年4月以降は打ち切り</strong><br>
+                  2026年1〜3月分のみ「電気・ガス価格激変緩和措置」で <strong>1〜2月：4.5円/kWh、3月：1.5円/kWh</strong> の値引きがありましたが、
+                  <strong>2026年4月分以降は補助なし</strong>。電気をたくさん使う家庭ほど補助打ち切りの影響を強く受けます。
+                </div>
+              </li>
+              <li>
+                <span class="trend-no">③</span>
+                <div>
+                  <strong>再エネ賦課金が初の4円超え（2026年度 4.18円/kWh）</strong><br>
+                  全国一律で、すべての電気使用量に上乗せされる賦課金が <strong>前年度比 +0.20円/kWh</strong> 引き上げ。
+                  使用量に比例して効くので、オール電化（月600〜800kWh級）は1世帯あたり年間 <strong>+1,500〜2,000円</strong> の追加負担になります。
+                </div>
+              </li>
+            </ol>
+
+            <p class="trend-conclusion">
+              本シミュレーターの数字は <strong>2026年4月時点の単価</strong>でのものです。<br class="br-pc">
+              実際にはオール電化のように電気使用量が多い家庭ほど、これらの逆風を強く受け、<strong>10年先の差はさらに広がる可能性が高い</strong>とお考えください。
+            </p>
+          </div>
+
+          <!-- 災害時の優位性 -->
+          <div class="comp-feature-box">
+            <div class="comp-feature-tag">RESILIENCE</div>
+            <h4>停電時もガスは使える ─ 災害時の安心</h4>
+            <p>
+              オール電化のご家庭は、停電するとお湯も使えず調理もできません。
+              一方、LPガスはボンベ単位で各ご家庭に設置されているため、<strong>停電時でもガスコンロでお湯を沸かしたり調理ができます</strong>。
+              2011年の東日本大震災でも、LPガスは都市ガスや電気よりも復旧が早かった実績があります（出典：日本LPガス協会）。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <p>
+          <strong>ご注意：</strong>本比較は、世帯人数別の標準的な電気使用量と当社標準料金プラン、中部電力ミライズ「ポイントプラン」「スマートライフプラン」（2026年4月時点・税込）に基づく試算です。実際のご使用状況・ライフスタイル・ご契約内容により金額は前後します。<br class="br-pc">
+          オール電化の電気使用量は、夜間50%・朝夕30%・日中20%の標準的な配分で試算しています。電気料金には燃料費調整額（−1.50円/kWh）と再エネ賦課金（4.18円/kWh）を加算しています。
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Steps ===== -->
   <section class="section section--gray" id="flow">
     <div class="container">
